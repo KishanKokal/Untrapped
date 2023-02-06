@@ -1,0 +1,1 @@
+console.log('Hello, this is background script running!')
