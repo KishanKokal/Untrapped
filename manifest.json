@@ -1,0 +1,16 @@
+{
+    "manifest_version": 2,
+    "name": "Untrapped",
+    "version": "0.0.1",
+    "content_scripts": [
+        {
+            "matches": [
+                "https://*.youtube.com/*"
+            ],
+            
+            "js": [
+                "content.js"
+            ]
+        }
+    ]
+}
