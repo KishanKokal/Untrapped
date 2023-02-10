@@ -6,6 +6,7 @@ function gotMessage(message, sender, sendResponse) {
         let videoSideBar = document.getElementsByTagName('ytd-watch-next-secondary-results-renderer');
         let adsSection = document.getElementById('companion');
         let homeFeed = document.querySelector('div#contents.style-scope.ytd-rich-grid-renderer');
+        let homeFeedIronSelector = document.querySelector("#chips.ytd-feed-filter-chip-bar-renderer");
 
         // check if the page has a side bar
         if (videoSideBar) {
@@ -23,12 +24,20 @@ function gotMessage(message, sender, sendResponse) {
             adsSection = false;
         }
 
-        // check if the page has a home page
+        // check if the page has a homefeed
         if (homeFeed) {
             // set the visibility of home page to hidden
             homeFeed.style['visibility'] = 'hidden';
             console.log("Home feed is now disappeared")
             homeFeed = false;
+        }
+
+        // check if the page has homeFeedIronSelector
+        if (homeFeedIronSelector) {
+            // set the visibility of home page to hidden
+            homeFeedIronSelector.style['visibility'] = 'hidden';
+            console.log("Home feed iron selector is now disappeared")
+            homeFeedIronSelector = false;
         }
     }
 }
