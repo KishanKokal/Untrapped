@@ -4,6 +4,7 @@ function gotMessage(message, sender, sendResponse) {
     if (message.text === 'hello') {
         // declaring variables to store each element
         let videoSideBar = document.getElementsByTagName('ytd-watch-next-secondary-results-renderer');
+        let adsSection = document.getElementById('companion');
         let homeFeed = document.querySelector('div#contents.style-scope.ytd-rich-grid-renderer');
 
         // check if the page has a side bar
@@ -12,6 +13,14 @@ function gotMessage(message, sender, sendResponse) {
             videoSideBar[0].style['visibility'] = 'hidden';
             console.log("Side Bar is now disappeared");
             videoSideBar = false;
+        }
+
+        // check if the page has a ads sectio
+        if (adsSection) {
+            // set the visibility of the ads section to hidden
+            adsSection.style['visibility'] = 'hidden';
+            console.log("Ads section is now removed");
+            adsSection = false;
         }
 
         // check if the page has a home page
