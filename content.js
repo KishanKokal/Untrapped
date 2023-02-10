@@ -1,12 +1,20 @@
 chrome.runtime.onMessage.addListener(gotMessage)
 
 function gotMessage(message, sender, sendResponse) {
+
     if (message.text === 'hello') {
         // declaring variables to store each element
         let videoSideBar = document.getElementsByTagName('ytd-watch-next-secondary-results-renderer');
         let adsSection = document.getElementById('companion');
         let homeFeed = document.querySelector('div#contents.style-scope.ytd-rich-grid-renderer');
         let homeFeedIronSelector = document.querySelector("#chips.ytd-feed-filter-chip-bar-renderer");
+        let youtubeLogo = document.querySelector('#logo-icon');
+
+        if (youtubeLogo) {
+            youtubeLogo.innerHTML = '<img src = "https://raw.githubusercontent.com/KishanKokal/Untrapped/a47dc370e9491f3f40aaa81ec8188db166709ee7/untrapped.svg" width = "100px"></img>';
+            console.log("The YouTube logo has been changed");
+            youtubeLogo = false;
+        }
 
         // check if the page has a side bar
         if (videoSideBar) {

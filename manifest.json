@@ -17,6 +17,6 @@
         "service_worker": "background.js"
     },
     "action": {
-        "default_icon": "untrapped.svg"
+        "default_icon": "untrapped.png"
     }
 }
