@@ -35,7 +35,7 @@ function gotMessage(message, sender, sendResponse) {
         // check if the page has a homefeed
         if (homeFeed) {
             // set the visibility of home page to hidden
-            homeFeed.style['visibility'] = 'hidden';
+            homeFeed.style['display'] = 'none';
             console.log("Home feed is now disappeared")
             homeFeed = false;
         }
