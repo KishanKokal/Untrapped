@@ -1,12 +1,13 @@
-chrome.runtime.onMessage.addListener(gotMessage)
+chrome.runtime.onMessage.addListener(gotMessage);
 
 function gotMessage(message, sender, sendResponse) {
+    console.log("got message called");
 
     if (message.text === 'hello') {
         // declaring variables to store each element
         let videoSideBar = document.getElementsByTagName('ytd-watch-next-secondary-results-renderer');
         let adsSection = document.getElementById('companion');
-        let homeFeed = document.querySelector('div#contents.style-scope.ytd-rich-grid-renderer');
+        let homeFeed = document.getElementById('contents');
         let homeFeedIronSelector = document.querySelector("#chips.ytd-feed-filter-chip-bar-renderer");
         let youtubeLogo = document.querySelector('#logo-icon');
 
@@ -35,7 +36,7 @@ function gotMessage(message, sender, sendResponse) {
         // check if the page has a homefeed
         if (homeFeed) {
             // set the visibility of home page to hidden
-            homeFeed.style['display'] = 'none';
+            homeFeed.style['visibility'] = 'hidden';
             console.log("Home feed is now disappeared")
             homeFeed = false;
         }

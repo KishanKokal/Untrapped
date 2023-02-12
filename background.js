@@ -1,11 +1,18 @@
 console.log('Hello, this is background script running!');
 
-chrome.action.onClicked.addListener(buttonClicked);
+chrome.tabs.onUpdated.addListener((tabId, tab) => {
+    if (tab.url && tab.url.includes('https://www.youtube.com')) {
+        console.log('YT video page loaded!');
+        callContent(tabId);
+    }
+});
 
-function buttonClicked(tab) {
+// chrome.action.onClicked.addListener(buttonClicked);
+
+function callContent(tabId) {
     console.log("Button Clicked!");
     let message = {
         text: 'hello'
-    }
-    chrome.tabs.sendMessage(tab.id, message)
+    };
+    chrome.tabs.sendMessage(tabId, message);
 }

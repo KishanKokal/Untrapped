@@ -2,6 +2,8 @@
     "manifest_version": 3,
     "name": "Untrapped",
     "version": "0.0.2",
+    "permissions": ["storage", "tabs"],
+    "host_permissions": ["https://*.youtube.com/*"],
     "content_scripts": [
         {
             "matches": [
