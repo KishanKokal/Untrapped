@@ -21,6 +21,7 @@
         "service_worker": "background.js"
     },
     "action": {
-        "default_icon": "untrapped.png"
+        "default_icon": "untrapped.png",
+        "default_popup": "popup.html"
     }
 }
