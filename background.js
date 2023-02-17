@@ -5,7 +5,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
         console.log('YT video page loaded!');
         setTimeout(() => {
             callContent(tabId);
-        }, 2000);
+        }, 200);
     }
 });
 
