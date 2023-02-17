@@ -41,7 +41,8 @@ function performAction(message) {
         // check if the page has a side bar
         if (related !== null) {
             // set the visibility of side bar to hidden
-            related.style['visibility'] = 'hidden';
+            related.style.color="white";
+            related.innerHTML = '<h1>"Concentrate all your thoughts upon the work in hand. The sun\'s rays do not burn until brought to a focus." - Alexander Graham Bell</h1>';
             console.log("Related feed is now disappeared");
         }
     }
