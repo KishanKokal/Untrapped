@@ -33,7 +33,7 @@ function performAction(message) {
         }
 
         if (youtubeLogo !== null) {
-            youtubeLogo.innerHTML = '<img src = "https://raw.githubusercontent.com/KishanKokal/Untrapped/a47dc370e9491f3f40aaa81ec8188db166709ee7/untrapped.svg" width = "100px"></img>';
+            youtubeLogo.innerHTML = '<img src = "https://raw.githubusercontent.com/KishanKokal/Untrapped/89f2281ee2f6f936d9eb831d065ab436cd785675/untrapped.svg" width = "100px"></img>';
             console.log("The YouTube logo has been changed");
             youtubeLogo = null;
         }
