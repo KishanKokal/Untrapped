@@ -4,16 +4,23 @@
     "version": "0.0.2",
     "permissions": ["storage", "tabs"],
     "host_permissions": ["https://*.youtube.com/*"],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "assets/untrapped.png",
+                "assets/untrapped.svg"
+            ],
+            "matches": ["https://*.youtube.com/*"]
+        }
+    ],
     "content_scripts": [
         {
             "matches": [
                 "https://*.youtube.com/*"
             ],
-            
             "js": [
                 "content.js"
             ],
-
             "run_at": "document_end"
         }
     ],
@@ -21,7 +28,8 @@
         "service_worker": "background.js"
     },
     "action": {
-        "default_icon": "untrapped.png",
-        "default_popup": "popup.html"
+        "default_icon": "assets/untrapped.png",
+        "default_popup": "popup.html",
+        "default_title": "Click here to change preferences for how you browse through YouTube"
     }
 }
