@@ -1,7 +1,8 @@
-let item, item2;
+let item, item2, item3;
 async function doSomething() {
     item = await chrome.storage.sync.get(['homeFeed']);
     item2 = await chrome.storage.sync.get(['recommendedVideos']);
+    item3 = await chrome.storage.sync.get(['shorts']);
 }
 doSomething();
 
@@ -19,8 +20,10 @@ async function performAction(message) {
         // declaring variables to store each element
         let related = document.getElementById('related')
         let homeFeed = document.getElementById('contents');
+        let scrollContainer = document.getElementById('scroll-container');
         let homeFeedIronSelector = document.querySelector("#chips.ytd-feed-filter-chip-bar-renderer");
         let youtubeLogo = document.querySelector('#logo-icon');
+        let shorts = document.querySelector("[title='Shorts']");
 
         // check if the page has a homefeed
         if (item && item.homeFeed && homeFeed !== null) {
@@ -28,7 +31,7 @@ async function performAction(message) {
             console.log('------------------');
             console.log(item);
             homeFeed.style['display'] = 'none';
-            console.log("Home feed is now disappeared")
+            console.log("Home feed is now disappeared");
             homeFeed = null;
         }
 
@@ -36,8 +39,15 @@ async function performAction(message) {
         if (item && item.homeFeed && homeFeedIronSelector !== null) {
             // set the visibility of home page to hidden
             homeFeedIronSelector.style['visibility'] = 'hidden';
-            console.log("Home feed iron selector is now disappeared")
+            console.log("Home feed iron selector is now disappeared");
             homeFeedIronSelector = null;
+        }
+
+        if (item && item.homeFeed && scrollContainer !== null) {
+            // set the display property of scroll container to none
+            scrollContainer.style['display'] = 'none';
+            console.log('Scroll container is now disappeared');
+            scrollContainer = null;
         }
 
         if (youtubeLogo !== null) {
@@ -52,6 +62,13 @@ async function performAction(message) {
             related.style.color="white";
             related.innerHTML = '<h1>"Concentrate all your thoughts upon the work in hand. The sun\'s rays do not burn until brought to a focus." - Alexander Graham Bell</h1>';
             console.log("Related feed is now disappeared");
+        }
+
+        if (item3 && item3.shorts && shorts !== null) {
+            // set the visibility of side bar to hidden
+            shorts.style['display'] = 'none';
+            console.log("Shorts tab is now disappeared");
+            shorts = null;
         }
     }
 }
