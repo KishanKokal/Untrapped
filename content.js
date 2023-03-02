@@ -1,10 +1,17 @@
+let item, item2;
+async function doSomething() {
+    item = await chrome.storage.sync.get(['homeFeed']);
+    item2 = await chrome.storage.sync.get(['recommendedVideos']);
+}
+doSomething();
+doSomething();
+
 chrome.runtime.onMessage.addListener(gotMessage);
 
 function gotMessage(message, sender, sendResponse) {
-
     console.log("got message called");
+    doSomething();
     performAction(message.text);
-
 }
 
 function performAction(message) {
@@ -17,15 +24,17 @@ function performAction(message) {
         let youtubeLogo = document.querySelector('#logo-icon');
 
         // check if the page has a homefeed
-        if (homeFeed !== null) {
+        if (item && item.homeFeed && homeFeed !== null) {
             // set the visibility of home page to hidden
+            console.log('------------------');
+            console.log(item);
             homeFeed.style['display'] = 'none';
             console.log("Home feed is now disappeared")
             homeFeed = null;
         }
 
         // check if the page has homeFeedIronSelector
-        if (homeFeedIronSelector !== null) {
+        if (item && item.homeFeed && homeFeedIronSelector !== null) {
             // set the visibility of home page to hidden
             homeFeedIronSelector.style['visibility'] = 'hidden';
             console.log("Home feed iron selector is now disappeared")
@@ -39,7 +48,7 @@ function performAction(message) {
         }
 
         // check if the page has a side bar
-        if (related !== null) {
+        if (item2 && item2.recommendedVideos && related !== null) {
             // set the visibility of side bar to hidden
             related.style.color="white";
             related.innerHTML = '<h1>"Concentrate all your thoughts upon the work in hand. The sun\'s rays do not burn until brought to a focus." - Alexander Graham Bell</h1>';
