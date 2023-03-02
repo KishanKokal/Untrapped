@@ -4,19 +4,18 @@ async function doSomething() {
     item2 = await chrome.storage.sync.get(['recommendedVideos']);
 }
 doSomething();
-doSomething();
 
 chrome.runtime.onMessage.addListener(gotMessage);
 
 function gotMessage(message, sender, sendResponse) {
     console.log("got message called");
-    doSomething();
     performAction(message.text);
 }
 
-function performAction(message) {
+async function performAction(message) {
     console.log("Perform action called!");
     if (message === 'hello') {
+        await doSomething();
         // declaring variables to store each element
         let related = document.getElementById('related')
         let homeFeed = document.getElementById('contents');
