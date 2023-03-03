@@ -15,18 +15,13 @@ function gotMessage(message, sender, sendResponse) {
 
 async function performAction(message) {
     console.log("Perform action called!");
-    if (message === 'refresh') {
-        youtubeLogo = document.getElementById('logo-icon');
-        console.log('YouTube logo clicked!');
-        youtubeLogo.click();
-    }
-    else if (message === 'hello') {
+    if (message === 'hello') {
         await doSomething();
         // declaring variables to store each element
         related = document.getElementById('related')
         homeFeed = document.getElementById('contents');
         scrollContainer = document.getElementById('scroll-container');
-        homeFeedIronSelector = document.getElementById('primary');
+        // homeFeedIronSelector = document.getElementById('primary');
         youtubeLogo = document.querySelector('#logo-icon');
         shorts = document.querySelector("[title='Shorts']");
 
@@ -41,12 +36,12 @@ async function performAction(message) {
         }
 
         // check if the page has homeFeedIronSelector
-        if (item && item.homeFeed && homeFeedIronSelector !== null) {
-            // set the visibility of home page to hidden
-            homeFeedIronSelector.style['display'] = 'none';
-            console.log("Home feed iron selector is now disappeared");
-            homeFeedIronSelector = null;
-        }
+        // if (item && item.homeFeed && homeFeedIronSelector !== null) {
+        //     // set the visibility of home page to hidden
+        //     homeFeedIronSelector.style['display'] = 'none';
+        //     console.log("Home feed iron selector is now disappeared");
+        //     homeFeedIronSelector = null;
+        // }
 
         if (item && item.homeFeed && scrollContainer !== null) {
             // set the display property of scroll container to none

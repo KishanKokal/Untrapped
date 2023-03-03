@@ -18,13 +18,11 @@ homeFeed.addEventListener('change', function(event){
 
         // Syncing changes
         let my_tabid;
-        let message = {
-            text: 'refresh'
-        };
+        
         chrome.tabs.query({currentWindow: true, active: true}, async function(tabs){
             console.log(tabs[0].url);
             my_tabid = await tabs[0].id;
-            await chrome.tabs.sendMessage(my_tabid, message);
+            await chrome.tabs.update(undefined, { url: tabs[0].url });
         });
 
         setTimeout(() => {
@@ -37,13 +35,11 @@ homeFeed.addEventListener('change', function(event){
 
         // Syncing changes
         let my_tabid;
-        let message = {
-            text: 'refresh'
-        };
+        
         chrome.tabs.query({currentWindow: true, active: true}, async function(tabs){
             console.log(tabs[0].url);
             my_tabid = await tabs[0].id;
-            await chrome.tabs.sendMessage(my_tabid, message);
+            await chrome.tabs.update(undefined, { url: tabs[0].url });
         });
 
         setTimeout(() => {
@@ -59,13 +55,11 @@ recommendedVideos.addEventListener('change', function(event){
 
         // Syncing changes
         let my_tabid;
-        let message = {
-            text: 'refresh'
-        };
+        
         chrome.tabs.query({currentWindow: true, active: true}, async function(tabs){
             console.log(tabs[0].url);
             my_tabid = await tabs[0].id;
-            await chrome.tabs.sendMessage(my_tabid, message);
+            await chrome.tabs.update(undefined, { url: tabs[0].url });
         });
 
         setTimeout(() => {
@@ -78,13 +72,11 @@ recommendedVideos.addEventListener('change', function(event){
 
         // Syncing changes
         let my_tabid;
-        let message = {
-            text: 'refresh'
-        };
+        
         chrome.tabs.query({currentWindow: true, active: true}, async function(tabs){
             console.log(tabs[0].url);
             my_tabid = await tabs[0].id;
-            await chrome.tabs.sendMessage(my_tabid, message);
+            await chrome.tabs.update(undefined, { url: tabs[0].url });
         });
 
         setTimeout(() => {
@@ -100,13 +92,11 @@ shorts.addEventListener('change', function(event){
 
         // Syncing changes
         let my_tabid;
-        let message = {
-            text: 'refresh'
-        };
+        
         chrome.tabs.query({currentWindow: true, active: true}, async function(tabs){
             console.log(tabs[0].url);
             my_tabid = await tabs[0].id;
-            await chrome.tabs.sendMessage(my_tabid, message);
+            await chrome.tabs.update(undefined, { url: tabs[0].url });
         });
 
         setTimeout(() => {
@@ -119,13 +109,11 @@ shorts.addEventListener('change', function(event){
 
         // Syncing changes
         let my_tabid;
-        let message = {
-            text: 'refresh'
-        };
+        
         chrome.tabs.query({currentWindow: true, active: true}, async function(tabs){
             console.log(tabs[0].url);
             my_tabid = await tabs[0].id;
-            await chrome.tabs.sendMessage(my_tabid, message);
+            await chrome.tabs.update(undefined, { url: tabs[0].url });
         });
 
         setTimeout(() => {
