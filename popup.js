@@ -18,16 +18,17 @@ homeFeed.addEventListener('change', function(event){
 
         // Syncing changes
         let my_tabid;
-        
+    
         chrome.tabs.query({currentWindow: true, active: true}, async function(tabs){
             console.log(tabs[0].url);
             my_tabid = await tabs[0].id;
-            await chrome.tabs.update(undefined, { url: tabs[0].url });
+            if (!tabs[0].url.includes('youtube.com/watch') && !tabs[0].url.includes('videos')) {
+                let message = {
+                    text: 'hideHomeFeed'
+                };
+                await chrome.tabs.sendMessage(my_tabid, message);
+            }
         });
-
-        setTimeout(() => {
-            chrome.tabs.reload();
-        }, 200);
     }
     else {
         console.log('homeFeed is unchecked');
@@ -39,12 +40,13 @@ homeFeed.addEventListener('change', function(event){
         chrome.tabs.query({currentWindow: true, active: true}, async function(tabs){
             console.log(tabs[0].url);
             my_tabid = await tabs[0].id;
-            await chrome.tabs.update(undefined, { url: tabs[0].url });
+            if (!tabs[0].url.includes('youtube.com/watch') && !tabs[0].url.includes('videos')) {
+                let message = {
+                    text: 'showHomeFeed'
+                };
+                await chrome.tabs.sendMessage(my_tabid, message);
+            }
         });
-
-        setTimeout(() => {
-            chrome.tabs.reload();
-        }, 200);
     }
 });
 
@@ -59,12 +61,13 @@ recommendedVideos.addEventListener('change', function(event){
         chrome.tabs.query({currentWindow: true, active: true}, async function(tabs){
             console.log(tabs[0].url);
             my_tabid = await tabs[0].id;
-            await chrome.tabs.update(undefined, { url: tabs[0].url });
+            if (tabs[0].url.includes('youtube.com/watch')) {
+                let message = {
+                    text: 'hideRecommendedVideos'
+                };
+                await chrome.tabs.sendMessage(my_tabid, message);
+            }
         });
-
-        setTimeout(() => {
-            chrome.tabs.reload();
-        }, 200);
     }
     else {
         console.log('recommendedVideos is unchecked');
@@ -76,18 +79,20 @@ recommendedVideos.addEventListener('change', function(event){
         chrome.tabs.query({currentWindow: true, active: true}, async function(tabs){
             console.log(tabs[0].url);
             my_tabid = await tabs[0].id;
-            await chrome.tabs.update(undefined, { url: tabs[0].url });
+            if (tabs[0].url.includes('youtube.com/watch')) {
+                let message = {
+                    text: 'showRecommendedVideos'
+                };
+                await chrome.tabs.sendMessage(my_tabid, message);
+            }
         });
 
-        setTimeout(() => {
-            chrome.tabs.reload();
-        }, 200);
     }
 });
 
 shorts.addEventListener('change', function(event){
     if (this.checked) {
-        console.log('recommendedVideos is checked');
+        console.log('Shorts is checked');
         chrome.storage.sync.set({shorts: true})
 
         // Syncing changes
@@ -96,15 +101,17 @@ shorts.addEventListener('change', function(event){
         chrome.tabs.query({currentWindow: true, active: true}, async function(tabs){
             console.log(tabs[0].url);
             my_tabid = await tabs[0].id;
-            await chrome.tabs.update(undefined, { url: tabs[0].url });
+            if (!tabs[0].url.includes('youtube.com/watch')) {
+                let message = {
+                    text: 'hideShorts'
+                };
+                await chrome.tabs.sendMessage(my_tabid, message);
+            }
         });
 
-        setTimeout(() => {
-            chrome.tabs.reload();
-        }, 200);
     }
     else {
-        console.log('recommendedVideos is unchecked');
+        console.log('Shorts is unchecked');
         chrome.storage.sync.set({shorts: false})
 
         // Syncing changes
@@ -113,12 +120,14 @@ shorts.addEventListener('change', function(event){
         chrome.tabs.query({currentWindow: true, active: true}, async function(tabs){
             console.log(tabs[0].url);
             my_tabid = await tabs[0].id;
-            await chrome.tabs.update(undefined, { url: tabs[0].url });
+            if (!tabs[0].url.includes('youtube.com/watch')) {
+                let message = {
+                    text: 'showShorts'
+                };
+                await chrome.tabs.sendMessage(my_tabid, message);
+            }
         });
 
-        setTimeout(() => {
-            chrome.tabs.reload();
-        }, 200);
     }
 });
 

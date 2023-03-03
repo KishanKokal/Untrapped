@@ -15,10 +15,44 @@ function gotMessage(message, sender, sendResponse) {
 
 async function performAction(message) {
     console.log("Perform action called!");
-    if (message === 'hello') {
+
+    if (message === 'hideRecommendedVideos') {
+        related = document.getElementById('related');
+        related.style['visibility'] = 'hidden';
+    }
+
+    else if (message === 'showRecommendedVideos') {
+        related = document.getElementById('related');
+        related.style['visibility'] = 'visible';
+    }
+
+    else if (message === 'hideHomeFeed') {
+        homeFeed = document.getElementById('contents');
+        scrollContainer = document.getElementById('scroll-container');
+        homeFeed.style['visibility'] = 'hidden';
+        scrollContainer.style['visibility'] = 'hidden';
+    }
+
+    else if (message === 'showHomeFeed') {
+        homeFeed = document.getElementById('contents');
+        scrollContainer = document.getElementById('scroll-container');
+        homeFeed.style['visibility'] = 'visible';
+        scrollContainer.style['visibility'] = 'visible';
+    }
+
+    else if (message === 'hideShorts') {
+        shorts = document.querySelector("[title='Shorts']");
+        shorts.style['display'] = 'none';
+    }
+    else if (message === 'showShorts') {
+        shorts = document.querySelector("[title='Shorts']");
+        shorts.style['display'] = 'flex';
+    }
+    
+    else if (message === 'hello') {
         await doSomething();
         // declaring variables to store each element
-        related = document.getElementById('related')
+        related = document.getElementById('related');
         homeFeed = document.getElementById('contents');
         scrollContainer = document.getElementById('scroll-container');
         // homeFeedIronSelector = document.getElementById('primary');
@@ -30,22 +64,14 @@ async function performAction(message) {
             // set the visibility of home page to hidden
             console.log('------------------');
             console.log(item);
-            homeFeed.style['display'] = 'none';
+            homeFeed.style['visibility'] = 'hidden';
             console.log("Home feed is now disappeared");
             homeFeed = null;
         }
 
-        // check if the page has homeFeedIronSelector
-        // if (item && item.homeFeed && homeFeedIronSelector !== null) {
-        //     // set the visibility of home page to hidden
-        //     homeFeedIronSelector.style['display'] = 'none';
-        //     console.log("Home feed iron selector is now disappeared");
-        //     homeFeedIronSelector = null;
-        // }
-
         if (item && item.homeFeed && scrollContainer !== null) {
             // set the display property of scroll container to none
-            scrollContainer.style['display'] = 'none';
+            scrollContainer.style['visibility'] = 'hidden';
             console.log('Scroll container is now disappeared');
             scrollContainer = null;
         }
@@ -59,9 +85,8 @@ async function performAction(message) {
         // check if the page has a side bar
         if (item2 && item2.recommendedVideos && related !== null) {
             // set the visibility of side bar to hidden
-            related.style.color="white";
-            related.innerHTML = '<h1>"Concentrate all your thoughts upon the work in hand. The sun\'s rays do not burn until brought to a focus." - Alexander Graham Bell</h1>';
-            console.log("Related feed is now disappeared");
+            related.style['visibility'] = 'hidden';
+            related = null;
         }
 
         if (item3 && item3.shorts && shorts !== null) {
