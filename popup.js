@@ -1,6 +1,6 @@
 console.log('Popup.js is working');
-// const homeFeed = document.getElementById('homeFeed');
-// const recommendedVideos = document.getElementById('recommendedVideos');
+const homeFeed = document.getElementById('homeFeed');
+const recommendedVideos = document.getElementById('recommendedVideos');
 
 async function doSomething() {
     const item = await chrome.storage.sync.get(['homeFeed']);
@@ -15,10 +15,40 @@ homeFeed.addEventListener('change', function(event){
     if (this.checked) {
         console.log('homeFeed is checked');
         chrome.storage.sync.set({homeFeed: true})
+
+        // Syncing changes
+        let my_tabid;
+        let message = {
+            text: 'refresh'
+        };
+        chrome.tabs.query({currentWindow: true, active: true}, async function(tabs){
+            console.log(tabs[0].url);
+            my_tabid = await tabs[0].id;
+            await chrome.tabs.sendMessage(my_tabid, message);
+        });
+
+        setTimeout(() => {
+            chrome.tabs.reload();
+        }, 200);
     }
     else {
         console.log('homeFeed is unchecked');
         chrome.storage.sync.set({homeFeed: false})
+
+        // Syncing changes
+        let my_tabid;
+        let message = {
+            text: 'refresh'
+        };
+        chrome.tabs.query({currentWindow: true, active: true}, async function(tabs){
+            console.log(tabs[0].url);
+            my_tabid = await tabs[0].id;
+            await chrome.tabs.sendMessage(my_tabid, message);
+        });
+
+        setTimeout(() => {
+            chrome.tabs.reload();
+        }, 200);
     }
 });
 
@@ -26,10 +56,40 @@ recommendedVideos.addEventListener('change', function(event){
     if (this.checked) {
         console.log('recommendedVideos is checked');
         chrome.storage.sync.set({recommendedVideos: true})
+
+        // Syncing changes
+        let my_tabid;
+        let message = {
+            text: 'refresh'
+        };
+        chrome.tabs.query({currentWindow: true, active: true}, async function(tabs){
+            console.log(tabs[0].url);
+            my_tabid = await tabs[0].id;
+            await chrome.tabs.sendMessage(my_tabid, message);
+        });
+
+        setTimeout(() => {
+            chrome.tabs.reload();
+        }, 200);
     }
     else {
         console.log('recommendedVideos is unchecked');
         chrome.storage.sync.set({recommendedVideos: false})
+
+        // Syncing changes
+        let my_tabid;
+        let message = {
+            text: 'refresh'
+        };
+        chrome.tabs.query({currentWindow: true, active: true}, async function(tabs){
+            console.log(tabs[0].url);
+            my_tabid = await tabs[0].id;
+            await chrome.tabs.sendMessage(my_tabid, message);
+        });
+
+        setTimeout(() => {
+            chrome.tabs.reload();
+        }, 200);
     }
 });
 
@@ -37,10 +97,40 @@ shorts.addEventListener('change', function(event){
     if (this.checked) {
         console.log('recommendedVideos is checked');
         chrome.storage.sync.set({shorts: true})
+
+        // Syncing changes
+        let my_tabid;
+        let message = {
+            text: 'refresh'
+        };
+        chrome.tabs.query({currentWindow: true, active: true}, async function(tabs){
+            console.log(tabs[0].url);
+            my_tabid = await tabs[0].id;
+            await chrome.tabs.sendMessage(my_tabid, message);
+        });
+
+        setTimeout(() => {
+            chrome.tabs.reload();
+        }, 200);
     }
     else {
         console.log('recommendedVideos is unchecked');
         chrome.storage.sync.set({shorts: false})
+
+        // Syncing changes
+        let my_tabid;
+        let message = {
+            text: 'refresh'
+        };
+        chrome.tabs.query({currentWindow: true, active: true}, async function(tabs){
+            console.log(tabs[0].url);
+            my_tabid = await tabs[0].id;
+            await chrome.tabs.sendMessage(my_tabid, message);
+        });
+
+        setTimeout(() => {
+            chrome.tabs.reload();
+        }, 200);
     }
 });
 

@@ -1,4 +1,4 @@
-let item, item2, item3;
+let item, item2, item3, related, homeFeed, scrollContainer, homeFeedIronSelector, youtubeLogo, shorts;
 async function doSomething() {
     item = await chrome.storage.sync.get(['homeFeed']);
     item2 = await chrome.storage.sync.get(['recommendedVideos']);
@@ -15,15 +15,20 @@ function gotMessage(message, sender, sendResponse) {
 
 async function performAction(message) {
     console.log("Perform action called!");
-    if (message === 'hello') {
+    if (message === 'refresh') {
+        youtubeLogo = document.getElementById('logo-icon');
+        console.log('YouTube logo clicked!');
+        youtubeLogo.click();
+    }
+    else if (message === 'hello') {
         await doSomething();
         // declaring variables to store each element
-        let related = document.getElementById('related')
-        let homeFeed = document.getElementById('contents');
-        let scrollContainer = document.getElementById('scroll-container');
-        let homeFeedIronSelector = document.getElementById('primary');
-        let youtubeLogo = document.querySelector('#logo-icon');
-        let shorts = document.querySelector("[title='Shorts']");
+        related = document.getElementById('related')
+        homeFeed = document.getElementById('contents');
+        scrollContainer = document.getElementById('scroll-container');
+        homeFeedIronSelector = document.getElementById('primary');
+        youtubeLogo = document.querySelector('#logo-icon');
+        shorts = document.querySelector("[title='Shorts']");
 
         // check if the page has a homefeed
         if (item && item.homeFeed && homeFeed !== null) {
