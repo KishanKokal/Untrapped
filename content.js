@@ -21,7 +21,7 @@ async function performAction(message) {
         let related = document.getElementById('related')
         let homeFeed = document.getElementById('contents');
         let scrollContainer = document.getElementById('scroll-container');
-        let homeFeedIronSelector = document.querySelector("#chips.ytd-feed-filter-chip-bar-renderer");
+        let homeFeedIronSelector = document.getElementById('primary');
         let youtubeLogo = document.querySelector('#logo-icon');
         let shorts = document.querySelector("[title='Shorts']");
 
@@ -38,7 +38,7 @@ async function performAction(message) {
         // check if the page has homeFeedIronSelector
         if (item && item.homeFeed && homeFeedIronSelector !== null) {
             // set the visibility of home page to hidden
-            homeFeedIronSelector.style['visibility'] = 'hidden';
+            homeFeedIronSelector.style['display'] = 'none';
             console.log("Home feed iron selector is now disappeared");
             homeFeedIronSelector = null;
         }
