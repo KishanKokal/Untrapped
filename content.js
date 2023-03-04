@@ -6,6 +6,11 @@ async function doSomething() {
 }
 doSomething();
 
+youtubeLogo = document.querySelector('#logo-icon');
+youtubeLogo.addEventListener("click", () => {
+    window.location = 'https://www.youtube.com/';
+});
+
 chrome.runtime.onMessage.addListener(gotMessage);
 
 function gotMessage(message, sender, sendResponse) {
@@ -28,16 +33,16 @@ async function performAction(message) {
 
     else if (message === 'hideHomeFeed') {
         homeFeed = document.getElementById('contents');
-        scrollContainer = document.getElementById('scroll-container');
-        homeFeed.style['visibility'] = 'hidden';
-        scrollContainer.style['visibility'] = 'hidden';
+        scrollContainer = document.getElementById('chips-wrapper');
+        homeFeed.style['display'] = 'none';
+        scrollContainer.style['display'] = 'none';
     }
 
     else if (message === 'showHomeFeed') {
         homeFeed = document.getElementById('contents');
-        scrollContainer = document.getElementById('scroll-container');
-        homeFeed.style['visibility'] = 'visible';
-        scrollContainer.style['visibility'] = 'visible';
+        scrollContainer = document.getElementById('chips-wrapper');
+        homeFeed.style['display'] = 'flex';
+        scrollContainer.style['display'] = 'flex';
     }
 
     else if (message === 'hideShorts') {
@@ -48,14 +53,13 @@ async function performAction(message) {
         shorts = document.querySelector("[title='Shorts']");
         shorts.style['display'] = 'flex';
     }
-    
+
     else if (message === 'hello') {
         await doSomething();
         // declaring variables to store each element
         related = document.getElementById('related');
         homeFeed = document.getElementById('contents');
-        scrollContainer = document.getElementById('scroll-container');
-        // homeFeedIronSelector = document.getElementById('primary');
+        scrollContainer = document.getElementById('chips-wrapper');
         youtubeLogo = document.querySelector('#logo-icon');
         shorts = document.querySelector("[title='Shorts']");
 
@@ -64,14 +68,14 @@ async function performAction(message) {
             // set the visibility of home page to hidden
             console.log('------------------');
             console.log(item);
-            homeFeed.style['visibility'] = 'hidden';
+            homeFeed.style['display'] = 'none';
             console.log("Home feed is now disappeared");
             homeFeed = null;
         }
 
         if (item && item.homeFeed && scrollContainer !== null) {
             // set the display property of scroll container to none
-            scrollContainer.style['visibility'] = 'hidden';
+            scrollContainer.style['display'] = 'none';
             console.log('Scroll container is now disappeared');
             scrollContainer = null;
         }
