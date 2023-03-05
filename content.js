@@ -1,9 +1,10 @@
-let item, item2, item3, item4, related, homeFeed, scrollContainer, homeFeedIronSelector, youtubeLogo, shorts, commentSection;
+let item, item2, item3, item4, item5, related, homeFeed, scrollContainer, homeFeedIronSelector, youtubeLogo, shorts, commentSection, liveChat;
 async function doSomething() {
     item = await chrome.storage.sync.get(['homeFeed']);
     item2 = await chrome.storage.sync.get(['recommendedVideos']);
     item3 = await chrome.storage.sync.get(['shorts']);
     item4 = await chrome.storage.sync.get(['commentSection']);
+    item5 = await chrome.storage.sync.get(['liveChat']);
 }
 doSomething();
 
@@ -66,6 +67,16 @@ async function performAction(message) {
         commentSection.style['display'] = 'none';
     }
 
+    else if (message == 'hideLiveChat') {
+        liveChat = document.getElementById('chat');
+        liveChat.style['display'] = 'none';
+    }
+
+    else if (message == 'showLiveChat') {
+        liveChat = document.getElementById('chat');
+        liveChat.style['display'] = '';
+    }
+
     else if (message === 'hello') {
         await doSomething();
         // declaring variables to store each element
@@ -75,6 +86,7 @@ async function performAction(message) {
         youtubeLogo = document.querySelector('#logo-icon');
         shorts = document.querySelector("[title='Shorts']");
         commentSection = document.getElementById('comments');
+        liveChat = document.getElementById('chat');
 
         // check if the page has a homefeed
         if (item && item.homeFeed && homeFeed !== null) {
@@ -107,11 +119,13 @@ async function performAction(message) {
         }
 
         if (item4 && item4.commentSection && commentSection !== null) {
-            // set the visibility of side bar to hidden
-            console.log('*******************');
-            console.log(item4.commentSection);
-            commentSection.style['display'] = 'none';
-            commentSection = null;
+            liveChat.style['display'] = 'none';
+            liveChat = null;
+        }
+
+        if (item5 && item5.liveChat && commentSection !== null) {
+            liveChat.style['display'] = 'none';
+            liveChat = null;
         }
 
         if (item3 && item3.shorts && shorts !== null) {
