@@ -1,12 +1,13 @@
-let item, item2, item3, related, homeFeed, scrollContainer, homeFeedIronSelector, youtubeLogo, shorts;
+let item, item2, item3, item4, related, homeFeed, scrollContainer, homeFeedIronSelector, youtubeLogo, shorts, commentSection;
 async function doSomething() {
     item = await chrome.storage.sync.get(['homeFeed']);
     item2 = await chrome.storage.sync.get(['recommendedVideos']);
     item3 = await chrome.storage.sync.get(['shorts']);
+    item4 = await chrome.storage.sync.get(['commentSection']);
 }
 doSomething();
 
-youtubeLogo = document.querySelector('#logo-icon');
+youtubeLogo = document.getElementById('logo-icon');
 youtubeLogo.addEventListener("click", () => {
     window.location = 'https://www.youtube.com/';
 });
@@ -41,17 +42,28 @@ async function performAction(message) {
     else if (message === 'showHomeFeed') {
         homeFeed = document.getElementById('contents');
         scrollContainer = document.getElementById('chips-wrapper');
-        homeFeed.style['display'] = 'flex';
-        scrollContainer.style['display'] = 'flex';
+        homeFeed.style['display'] = '';
+        scrollContainer.style['display'] = '';
     }
 
     else if (message === 'hideShorts') {
         shorts = document.querySelector("[title='Shorts']");
         shorts.style['display'] = 'none';
     }
+
     else if (message === 'showShorts') {
         shorts = document.querySelector("[title='Shorts']");
-        shorts.style['display'] = 'flex';
+        shorts.style['display'] = '';
+    }
+
+    else if (message == 'showCommentSection') {
+        commentSection = document.getElementById('comments');
+        commentSection.style['display'] = '';
+    }
+
+    else if (message == 'hideCommentSection') {
+        commentSection = document.getElementById('comments');
+        commentSection.style['display'] = 'none';
     }
 
     else if (message === 'hello') {
@@ -62,6 +74,7 @@ async function performAction(message) {
         scrollContainer = document.getElementById('chips-wrapper');
         youtubeLogo = document.querySelector('#logo-icon');
         shorts = document.querySelector("[title='Shorts']");
+        commentSection = document.getElementById('comments');
 
         // check if the page has a homefeed
         if (item && item.homeFeed && homeFeed !== null) {
@@ -91,6 +104,14 @@ async function performAction(message) {
             // set the visibility of side bar to hidden
             related.style['visibility'] = 'hidden';
             related = null;
+        }
+
+        if (item4 && item4.commentSection && commentSection !== null) {
+            // set the visibility of side bar to hidden
+            console.log('*******************');
+            console.log(item4.commentSection);
+            commentSection.style['display'] = 'none';
+            commentSection = null;
         }
 
         if (item3 && item3.shorts && shorts !== null) {
