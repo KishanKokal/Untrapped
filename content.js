@@ -119,8 +119,8 @@ async function performAction(message) {
         }
 
         if (item4 && item4.commentSection && commentSection !== null) {
-            liveChat.style['display'] = 'none';
-            liveChat = null;
+            commentSection.style['display'] = 'none';
+            commentSection = null;
         }
 
         if (item5 && item5.liveChat && commentSection !== null) {
