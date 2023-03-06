@@ -123,7 +123,7 @@ async function performAction(message) {
             commentSection = null;
         }
 
-        if (item5 && item5.liveChat && commentSection !== null) {
+        if (item5 && item5.liveChat && liveChat !== null) {
             liveChat.style['display'] = 'none';
             liveChat = null;
         }
