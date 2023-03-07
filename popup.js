@@ -3,6 +3,7 @@ const homeFeed = document.getElementById('homeFeed');
 const recommendedVideos = document.getElementById('recommendedVideos');
 const commentSection = document.getElementById('commentSection');
 const liveChat = document.getElementById('liveChat');
+const ad = document.getElementById('ad');
 
 async function doSomething() {
     const item = await chrome.storage.sync.get(['homeFeed']);
@@ -10,11 +11,13 @@ async function doSomething() {
     const item3 = await chrome.storage.sync.get(['shorts']);
     const item4 = await chrome.storage.sync.get(['commentSection']);
     const item5 = await chrome.storage.sync.get(['liveChat']);
+    const item6 = await chrome.storage.sync.get(['ad']);
     document.getElementById('homeFeed').checked = item.homeFeed;
     document.getElementById('recommendedVideos').checked = item2.recommendedVideos;
     document.getElementById('shorts').checked = item3.shorts;
     document.getElementById('commentSection').checked = item4.commentSection;
     document.getElementById('liveChat').checked = item5.liveChat;
+    document.getElementById('ad').checked = item6.ad;
 }
 
 homeFeed.addEventListener('change', function(event){
@@ -55,6 +58,46 @@ homeFeed.addEventListener('change', function(event){
         });
     }
 });
+
+ad.addEventListener('change', function(event){
+    if (this.checked) {
+        console.log('ad banner is checked');
+        chrome.storage.sync.set({ad: true})
+
+        // Syncing changes
+        let my_tabid;
+    
+        chrome.tabs.query({currentWindow: true, active: true}, async function(tabs){
+            console.log(tabs[0].url);
+            my_tabid = await tabs[0].id;
+            if (!tabs[0].url.includes('youtube.com/watch') && !tabs[0].url.includes('videos')) {
+                let message = {
+                    text: 'hideAd'
+                };
+                await chrome.tabs.sendMessage(my_tabid, message);
+            }
+        });
+    }
+    else {
+        console.log('ad banner is unchecked');
+        chrome.storage.sync.set({ad: false})
+
+        // Syncing changes
+        let my_tabid;
+        
+        chrome.tabs.query({currentWindow: true, active: true}, async function(tabs){
+            console.log(tabs[0].url);
+            my_tabid = await tabs[0].id;
+            if (!tabs[0].url.includes('youtube.com/watch') && !tabs[0].url.includes('videos')) {
+                let message = {
+                    text: 'showAd'
+                };
+                await chrome.tabs.sendMessage(my_tabid, message);
+            }
+        });
+    }
+});
+
 
 recommendedVideos.addEventListener('change', function(event){
     if (this.checked) {

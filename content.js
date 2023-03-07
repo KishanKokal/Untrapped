@@ -1,10 +1,11 @@
-let item, item2, item3, item4, item5, related, homeFeed, scrollContainer, homeFeedIronSelector, youtubeLogo, shorts, commentSection, liveChat;
+let item, item2, item3, item4, item5, item6, related, homeFeed, scrollContainer, homeFeedIronSelector, youtubeLogo, shorts, commentSection, liveChat, ad;
 async function doSomething() {
     item = await chrome.storage.sync.get(['homeFeed']);
     item2 = await chrome.storage.sync.get(['recommendedVideos']);
     item3 = await chrome.storage.sync.get(['shorts']);
     item4 = await chrome.storage.sync.get(['commentSection']);
     item5 = await chrome.storage.sync.get(['liveChat']);
+    item6 = await chrome.storage.sync.get(['ad']);
 }
 doSomething();
 
@@ -22,7 +23,7 @@ function gotMessage(message, sender, sendResponse) {
 
 async function performAction(message) {
     console.log("Perform action called!");
-
+    console.log(message);
     if (message === 'hideRecommendedVideos') {
         related = document.getElementById('related');
         related.style['visibility'] = 'hidden';
@@ -77,6 +78,21 @@ async function performAction(message) {
         liveChat.style['display'] = '';
     }
 
+    else if (message == 'showAd') {
+        ad = document.querySelectorAll('#masthead-ad');
+        ad.forEach(function(ele) {
+            ele.style['display'] = '';
+        });
+    }
+
+    else if (message == 'hideAd') {
+        ad = document.querySelectorAll('#masthead-ad');
+        console.log('Hide ad called');
+        ad.forEach(function(ele) {
+            ele.style['display'] = 'none';
+        });
+    }
+
     else if (message === 'hello') {
         await doSomething();
         // declaring variables to store each element
@@ -87,6 +103,7 @@ async function performAction(message) {
         shorts = document.querySelector("[title='Shorts']");
         commentSection = document.getElementById('comments');
         liveChat = document.getElementById('chat');
+        ad = document.querySelectorAll('#masthead-ad');
 
         // check if the page has a homefeed
         if (item && item.homeFeed && homeFeed !== null) {
@@ -126,6 +143,14 @@ async function performAction(message) {
         if (item5 && item5.liveChat && liveChat !== null) {
             liveChat.style['display'] = 'none';
             liveChat = null;
+        }
+
+        if (item6 && item6.ad && ad !== null) {
+            ad = document.querySelectorAll('#masthead-ad');
+            console.log('Hide ad called');
+            ad.forEach(function(ele) {
+                ele.style['display'] = 'none';
+            });
         }
 
         if (item3 && item3.shorts && shorts !== null) {
