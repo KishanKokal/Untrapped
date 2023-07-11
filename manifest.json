@@ -1,37 +1,33 @@
 {
-    "manifest_version": 3,
-    "name": "Untrapped",
-    "version": "2.0.1",
-    "permissions": ["storage", "tabs"],
-    "host_permissions": ["https://*.youtube.com/*"],
-    "web_accessible_resources": [
-        {
-            "resources": [
-                "assets/untrapped.png",
-                "assets/untrapped.svg",
-                "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js",
-                "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            ],
-            "matches": ["https://*.youtube.com/*"]
-        }
-    ],
-    "content_scripts": [
-        {
-            "matches": [
-                "https://*.youtube.com/*"
-            ],
-            "js": [
-                "content.js"
-            ],
-            "run_at": "document_end"
-        }
-    ],
-    "background": {
-        "service_worker": "background.js"
-    },
-    "action": {
-        "default_icon": "assets/untrapped.png",
-        "default_popup": "popup.html",
-        "default_title": "Click here to change preferences for how you browse through YouTube"
+  "manifest_version": 3,
+  "name": "Untrapped",
+  "version": "2.0.1",
+  "permissions": ["storage", "tabs"],
+  "host_permissions": ["https://*.youtube.com/*"],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "assets/untrapped.png",
+        "assets/untrapped.svg",
+        "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js",
+        "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      ],
+      "matches": ["https://*.youtube.com/*"]
     }
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://*.youtube.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_icon": "assets/untrapped.png",
+    "default_popup": "popup.html",
+    "default_title": "Click here to change preferences for how you browse through YouTube"
+  }
 }
