@@ -1,4 +1,3 @@
-console.log("Popup.js is working");
 const homeFeed = document.getElementById("homeFeed");
 const recommendedVideos = document.getElementById("recommendedVideos");
 const commentSection = document.getElementById("commentSection");
@@ -23,7 +22,6 @@ async function doSomething() {
 
 homeFeed.addEventListener("change", function (event) {
   if (this.checked) {
-    console.log("homeFeed is checked");
     chrome.storage.sync.set({ homeFeed: true });
 
     // Syncing changes
@@ -32,7 +30,6 @@ homeFeed.addEventListener("change", function (event) {
     chrome.tabs.query(
       { currentWindow: true, active: true },
       async function (tabs) {
-        console.log(tabs[0].url);
         my_tabid = await tabs[0].id;
         if (
           !tabs[0].url.includes("youtube.com/watch") &&
@@ -46,7 +43,6 @@ homeFeed.addEventListener("change", function (event) {
       }
     );
   } else {
-    console.log("homeFeed is unchecked");
     chrome.storage.sync.set({ homeFeed: false });
 
     // Syncing changes
@@ -55,7 +51,6 @@ homeFeed.addEventListener("change", function (event) {
     chrome.tabs.query(
       { currentWindow: true, active: true },
       async function (tabs) {
-        console.log(tabs[0].url);
         my_tabid = await tabs[0].id;
         if (
           !tabs[0].url.includes("youtube.com/watch") &&
@@ -73,7 +68,6 @@ homeFeed.addEventListener("change", function (event) {
 
 ad.addEventListener("change", function (event) {
   if (this.checked) {
-    console.log("ad banner is checked");
     chrome.storage.sync.set({ ad: true });
 
     // Syncing changes
@@ -82,7 +76,6 @@ ad.addEventListener("change", function (event) {
     chrome.tabs.query(
       { currentWindow: true, active: true },
       async function (tabs) {
-        console.log(tabs[0].url);
         my_tabid = await tabs[0].id;
         if (
           !tabs[0].url.includes("youtube.com/watch") &&
@@ -96,7 +89,6 @@ ad.addEventListener("change", function (event) {
       }
     );
   } else {
-    console.log("ad banner is unchecked");
     chrome.storage.sync.set({ ad: false });
 
     // Syncing changes
@@ -105,7 +97,6 @@ ad.addEventListener("change", function (event) {
     chrome.tabs.query(
       { currentWindow: true, active: true },
       async function (tabs) {
-        console.log(tabs[0].url);
         my_tabid = await tabs[0].id;
         if (
           !tabs[0].url.includes("youtube.com/watch") &&
@@ -123,7 +114,6 @@ ad.addEventListener("change", function (event) {
 
 recommendedVideos.addEventListener("change", function (event) {
   if (this.checked) {
-    console.log("recommendedVideos is checked");
     chrome.storage.sync.set({ recommendedVideos: true });
 
     // Syncing changes
@@ -132,7 +122,6 @@ recommendedVideos.addEventListener("change", function (event) {
     chrome.tabs.query(
       { currentWindow: true, active: true },
       async function (tabs) {
-        console.log(tabs[0].url);
         my_tabid = await tabs[0].id;
         if (tabs[0].url.includes("youtube.com/watch")) {
           let message = {
@@ -143,7 +132,6 @@ recommendedVideos.addEventListener("change", function (event) {
       }
     );
   } else {
-    console.log("recommendedVideos is unchecked");
     chrome.storage.sync.set({ recommendedVideos: false });
 
     // Syncing changes
@@ -152,7 +140,6 @@ recommendedVideos.addEventListener("change", function (event) {
     chrome.tabs.query(
       { currentWindow: true, active: true },
       async function (tabs) {
-        console.log(tabs[0].url);
         my_tabid = await tabs[0].id;
         if (tabs[0].url.includes("youtube.com/watch")) {
           let message = {
@@ -167,7 +154,6 @@ recommendedVideos.addEventListener("change", function (event) {
 
 commentSection.addEventListener("change", function (event) {
   if (this.checked) {
-    console.log("commentSection is checked");
     chrome.storage.sync.set({ commentSection: true });
 
     // Syncing changes
@@ -176,7 +162,6 @@ commentSection.addEventListener("change", function (event) {
     chrome.tabs.query(
       { currentWindow: true, active: true },
       async function (tabs) {
-        console.log(tabs[0].url);
         my_tabid = await tabs[0].id;
         if (tabs[0].url.includes("youtube.com/watch")) {
           let message = {
@@ -187,7 +172,6 @@ commentSection.addEventListener("change", function (event) {
       }
     );
   } else {
-    console.log("commentSection is unchecked");
     chrome.storage.sync.set({ commentSection: false });
 
     // Syncing changes
@@ -196,7 +180,6 @@ commentSection.addEventListener("change", function (event) {
     chrome.tabs.query(
       { currentWindow: true, active: true },
       async function (tabs) {
-        console.log(tabs[0].url);
         my_tabid = await tabs[0].id;
         if (tabs[0].url.includes("youtube.com/watch")) {
           let message = {
@@ -211,7 +194,6 @@ commentSection.addEventListener("change", function (event) {
 
 liveChat.addEventListener("change", function (event) {
   if (this.checked) {
-    console.log("liveChat is checked");
     chrome.storage.sync.set({ liveChat: true });
 
     // Syncing changes
@@ -220,7 +202,6 @@ liveChat.addEventListener("change", function (event) {
     chrome.tabs.query(
       { currentWindow: true, active: true },
       async function (tabs) {
-        console.log(tabs[0].url);
         my_tabid = await tabs[0].id;
         if (tabs[0].url.includes("youtube.com/watch")) {
           let message = {
@@ -231,7 +212,6 @@ liveChat.addEventListener("change", function (event) {
       }
     );
   } else {
-    console.log("liveChat is unchecked");
     chrome.storage.sync.set({ liveChat: false });
 
     // Syncing changes
@@ -240,7 +220,6 @@ liveChat.addEventListener("change", function (event) {
     chrome.tabs.query(
       { currentWindow: true, active: true },
       async function (tabs) {
-        console.log(tabs[0].url);
         my_tabid = await tabs[0].id;
         if (tabs[0].url.includes("youtube.com/watch")) {
           let message = {
@@ -255,7 +234,6 @@ liveChat.addEventListener("change", function (event) {
 
 shorts.addEventListener("change", function (event) {
   if (this.checked) {
-    console.log("Shorts is checked");
     chrome.storage.sync.set({ shorts: true });
 
     // Syncing changes
@@ -264,7 +242,6 @@ shorts.addEventListener("change", function (event) {
     chrome.tabs.query(
       { currentWindow: true, active: true },
       async function (tabs) {
-        console.log(tabs[0].url);
         my_tabid = await tabs[0].id;
         if (!tabs[0].url.includes("youtube.com/watch")) {
           let message = {
@@ -275,7 +252,6 @@ shorts.addEventListener("change", function (event) {
       }
     );
   } else {
-    console.log("Shorts is unchecked");
     chrome.storage.sync.set({ shorts: false });
 
     // Syncing changes
@@ -284,7 +260,6 @@ shorts.addEventListener("change", function (event) {
     chrome.tabs.query(
       { currentWindow: true, active: true },
       async function (tabs) {
-        console.log(tabs[0].url);
         my_tabid = await tabs[0].id;
         if (!tabs[0].url.includes("youtube.com/watch")) {
           let message = {

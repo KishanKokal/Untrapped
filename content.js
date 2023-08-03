@@ -31,13 +31,10 @@ youtubeLogo.addEventListener("click", () => {
 chrome.runtime.onMessage.addListener(gotMessage);
 
 function gotMessage(message, sender, sendResponse) {
-  console.log("got message called");
   performAction(message.text);
 }
 
 async function performAction(message) {
-  console.log("Perform action called!");
-  console.log(message);
   if (message === "hideRecommendedVideos") {
     related = document.getElementById("related");
     related.style["visibility"] = "hidden";
@@ -79,7 +76,6 @@ async function performAction(message) {
     });
   } else if (message == "hideAd") {
     ad = document.querySelectorAll("#masthead-ad");
-    console.log("Hide ad called");
     ad.forEach(function (ele) {
       ele.style["display"] = "none";
     });
@@ -98,24 +94,19 @@ async function performAction(message) {
     // check if the page has a homefeed
     if (item && item.homeFeed && homeFeed !== null) {
       // set the visibility of home page to hidden
-      console.log("------------------");
-      console.log(item);
       homeFeed.style["display"] = "none";
-      console.log("Home feed is now disappeared");
       homeFeed = null;
     }
 
     if (item && item.homeFeed && scrollContainer !== null) {
       // set the display property of scroll container to none
       scrollContainer.style["display"] = "none";
-      console.log("Scroll container is now disappeared");
       scrollContainer = null;
     }
 
     if (youtubeLogo !== null) {
       youtubeLogo.innerHTML =
         '<img src = "https://raw.githubusercontent.com/KishanKokal/Untrapped/89f2281ee2f6f936d9eb831d065ab436cd785675/untrapped.svg" width = "100px"></img>';
-      console.log("The YouTube logo has been changed");
       youtubeLogo = null;
     }
 
@@ -138,7 +129,6 @@ async function performAction(message) {
 
     if (item6 && item6.ad && ad !== null) {
       ad = document.querySelectorAll("#masthead-ad");
-      console.log("Hide ad called");
       ad.forEach(function (ele) {
         ele.style["display"] = "none";
       });
@@ -147,7 +137,6 @@ async function performAction(message) {
     if (item3 && item3.shorts && shorts !== null) {
       // set the visibility of side bar to hidden
       shorts.style["display"] = "none";
-      console.log("Shorts tab is now disappeared");
       shorts = null;
     }
   }
